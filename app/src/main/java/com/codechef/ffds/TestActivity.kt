@@ -9,6 +9,8 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.Body
+import java.io.IOException
 
 class TestActivity : AppCompatActivity() {
 
@@ -32,7 +34,8 @@ class TestActivity : AppCompatActivity() {
             "slot" to "evening")
 
         val call=apiHolder.register(fields)
-        call.enqueue(object: Callback<ResponseBody>{
+
+        call.enqueue(object: Callback<ResponseBody> {
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                 Toast.makeText(applicationContext, t.message, Toast.LENGTH_SHORT).show()
             }
@@ -40,7 +43,6 @@ class TestActivity : AppCompatActivity() {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 Toast.makeText(applicationContext, response.message(), Toast.LENGTH_SHORT).show()
             }
-
         })
     }
 }
